@@ -22,6 +22,10 @@ jobs:
 
     - run: pip install -r requirements.txt
     - run: pytest tests/ -v
+      env:
+        # Añade esta línea: PYTHONPATH apunta al directorio raíz del repositorio.
+        # GitHub Actions clona el repo en GITHUB_WORKSPACE.
+        PYTHONPATH: ${{ github.workspace }}
 
     - name: Verificar app corriendo
       run: |
