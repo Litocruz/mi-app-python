@@ -23,7 +23,11 @@ def test_suma(client):
 
 def test_saludo(client):
     r = client.get('/saludo/Rox')
-    assert '¡Hola Rox!' in r.get_data(as_text=True)
+     # Paso CRÍTICO: Parsear la respuesta JSON
+    data = json.loads(r.data)
+    # Ahora, verifica el valor de la clave 'saludo' dentro del diccionario JSON
+    assert data['saludo'] == '¡Hola Rox!'
+    #assert '¡Hola Rox!' in r.get_data(as_text=True)
 
 def test_multiplicar(): assert multiplicar(2, 3) == 6
 def test_es_par(): assert es_par(4)
