@@ -34,6 +34,10 @@ jobs:
     - name: Ejecutar con cobertura
       run: |
         pytest --cov=app --cov-report=term --cov-report=html
+      env:
+        # Añade esta línea: PYTHONPATH apunta al directorio raíz del repositorio.
+        # GitHub Actions clona el repo en GITHUB_WORKSPACE.
+        PYTHONPATH: ${{ github.workspace }}
 
     - name: Guardar reporte
       uses: actions/upload-artifact@v4
